@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"isso0424/gorilla-template/router"
+	"isso0424/gorilla-template/router/routes"
 	"isso0424/gorilla-template/server/midleware"
 	"net/http"
 
@@ -13,7 +14,7 @@ import (
 func Serve(c *Config) error {
 	r := mux.NewRouter()
 
-	for _, route := range router.Routes {
+	for _, route := range routes.Routes {
 		handler := createHandler(route)
 
 		r.Methods(route.Method()).Path(route.Path()).Name(route.Name()).Handler(handler)
