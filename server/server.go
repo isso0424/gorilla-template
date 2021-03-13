@@ -1,13 +1,16 @@
 package server
 
 import (
+	"fmt"
 	"isso0424/gorilla-template/router"
 	"net/http"
+	"os"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
-func serve(c *Config) error {
+func Serve(c *Config) error {
 	r := mux.NewRouter()
 
 	for _, route := range router.Routes {
@@ -16,12 +19,11 @@ func serve(c *Config) error {
 		r.Methods(route.Method()).Path(route.Path()).Name(route.Name()).Handler(handler)
 	}
 
-	return nil
+	return http.ListenAndServe(fmt.Sprintf(":%d", c.ListenPort), handlers.CompressHandler(r))
 }
 
-func createHandler(route router.Route) http.Handler {
-	handler := route
+func createHandler(route router.Route) (handler http.Handler) {
+	handler = handlers.LoggingHandler(os.Stdout, http.HandlerFunc(route.ServeHTTP))
 
-	// TODO: add midleware in here
-	return handler
+	return
 }

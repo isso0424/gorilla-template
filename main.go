@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"isso0424/gorilla-template/server"
+	"log"
+)
 
 func main() {
-	fmt.Println("this is template")
+	log.Println(server.Serve(&server.Config{ListenIP: "localhost", ListenPort: 8000}))
 }
