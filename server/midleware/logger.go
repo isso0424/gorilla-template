@@ -7,7 +7,7 @@ import (
 )
 
 func RegisterLogger(route router.Route) http.Handler {
-	return http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		logger.LoggingInfo(route.Method(), route.Path(), route.Name())
 
 		route.ServeHTTP(w, r)

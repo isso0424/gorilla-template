@@ -9,9 +9,9 @@ const Template = "%s %s %s"
 
 var (
 	warningLogger *log.Logger
-	infoLogger *log.Logger
-	errorLogger *log.Logger
-	debugLogger *log.Logger
+	infoLogger    *log.Logger
+	errorLogger   *log.Logger
+	debugLogger   *log.Logger
 )
 
 func init() {

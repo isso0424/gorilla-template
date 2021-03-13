@@ -1,6 +1,6 @@
 package server
 
 type Config struct {
-	ListenIP string
+	ListenIP   string
 	ListenPort int
 }
