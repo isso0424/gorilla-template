@@ -1,3 +1,3 @@
 package router
 
-var routes = []Route{}
+var Routes = []Route{}
