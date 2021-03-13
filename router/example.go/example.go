@@ -1,7 +1,7 @@
 package example
 
 import (
-	"log"
+	"isso0424/gorilla-template/logger"
 	"net/http"
 )
 
@@ -10,7 +10,7 @@ type Example struct {}
 func(route Example) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Success!!!"))
 
-	log.Println("Success")
+	logger.InfoLogger.Println("Success")
 }
 
 func(route Example) Method() string {

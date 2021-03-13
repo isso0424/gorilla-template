@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 	"isso0424/gorilla-template/router"
+	"isso0424/gorilla-template/server/midleware"
 	"net/http"
-	"os"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -23,7 +23,5 @@ func Serve(c *Config) error {
 }
 
 func createHandler(route router.Route) (handler http.Handler) {
-	handler = handlers.LoggingHandler(os.Stdout, http.HandlerFunc(route.ServeHTTP))
-
-	return
+	return midleware.RegisterLogger(route)
 }
